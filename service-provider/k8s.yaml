@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: service-provider
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service-provider
+    spec:
+      containers:
+      - name: service-provider
+        image: service-provider
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-provider
+spec:
+  selector:
+    app: service-provider
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

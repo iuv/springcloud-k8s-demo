@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: service-customer
+eureka:
+  client:
+    service-url:
+      # eureka地址使用 k8s的service地址
+      defaultZone: http://eureka:8080/eureka/
+  instance:
+    instance-id: service-customer
+    hostname: service-customer
+server:
+  port: 8080
+feign:
+  hystrix:
+    enabled: true
